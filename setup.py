@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(
-    name='amp',
+    name='lib',
     version='1',
-    packages=['amp'],
+    packages=['lib'],
 )
