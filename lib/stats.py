@@ -22,3 +22,8 @@ def record_std(std, stdfile):
 
 def exit_condition(stdout):
     return stdout.channel.exit_status_ready()
+
+def record_stats_per_cgroup(result_dir, signature, cgroup_li, stat_name):
+    for idx, cgroup in enumerate(cgroup_li):
+        with open("%s/%s_%d.%s.txt" % (result_dir, signature, idx, stat_name), "a") as f:
+            f.write(cgroup.get_str(stat_name))
