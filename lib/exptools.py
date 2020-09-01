@@ -11,7 +11,10 @@ import datetime
 import os
 import paramiko
 
+from lib.workloads.cloudsuite import *
 from lib.workloads.graph500 import *
+from lib.workloads.npb import *
+from lib.workloads.speccpu2017 import *
 
 def get_ssh_client(ip, port, username, password):
     ssh_client = paramiko.SSHClient()
@@ -55,6 +58,12 @@ def setup_exp_directory(result_dir, expname):
     return result_path
 
 def get_workload(ssh_client, workload_type, workload_name):
-    if workload_type == "graph500":
+    if workload_type == "cloudsuite":
+        workload = cloudsuite(ssh_client, workload_name)
+    elif workload_type == "graph500":
         workload = graph500(ssh_client, workload_name)
+    elif workload_type == "npb":
+        workload = npb(ssh_client, workload_name)
+    elif workload_type == "speccpu2017":
+        workload = speccpu2017(ssh_client, workload_name)
     return workload
