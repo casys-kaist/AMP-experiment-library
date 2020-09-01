@@ -21,9 +21,7 @@ class graph500(docker_workload):
 
     def create(self):
         self.container_name = self.id_generator()
-        cmd = "docker run"\
-                " --cpuset-cpus=\"`numactl --hardware | grep 'cpus' | grep 'node 0' | cut -d' ' -f4- | sed -e 's/ /,/g'`\""\
-                " --name %s -t -d %s"\
+        cmd = "docker run --name %s -t -d %s"\
                 % (self.container_name, self.docker_image_name)
         self.exec_command_block(cmd)
 
