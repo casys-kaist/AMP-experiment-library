@@ -28,6 +28,10 @@ def record_stats_per_cgroup(result_dir, signature, cgroup_li, stat_name):
         with open("%s/%s_%d.%s.txt" % (result_dir, signature, idx, stat_name), "a") as f:
             f.write(cgroup.get_str(stat_name))
 
+def record_stats_single(result_dir, signature, stat_name, value):
+    with open("%s/%s.%s.txt" % (result_dir, signature, stat_name), "a") as f:
+        f.write(str(value))
+
 def time_to_seconds(time_str):
     elapsed_time = time_str.strip().split()[2].split("elapsed")[0]
     time_len = len(elapsed_time.split(":"))
