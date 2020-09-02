@@ -28,6 +28,20 @@ def record_stats_per_cgroup(result_dir, signature, cgroup_li, stat_name):
         with open("%s/%s_%d.%s.txt" % (result_dir, signature, idx, stat_name), "a") as f:
             f.write(cgroup.get_str(stat_name))
 
+def time_to_seconds(time_str):
+    elapsed_time = time_str.strip().split()[2].split("elapsed")[0]
+    time_len = len(elapsed_time.split(":"))
+    if time_len == 2: # min:sec
+        elapsed_hour = 0
+        elapsed_min = float(elapsed_time.split(":")[0])
+        elapsed_sec = float(elapsed_time.split(":")[1])
+    elif time_len == 3: # hour:min:sec
+        elapsed_hour = float(elapsed_time.split(":")[0])
+        elapsed_min = float(elapsed_time.split(":")[1])
+        elapsed_sec = float(elapsed_time.split(":")[2])
+    elapsed_seconds = elapsed_hour * 60 * 60 + elapsed_min * 60 + elapsed_sec
+    return elapsed_seconds
+
 speccpu2017_abbr_dict = {
             "605.mcf_s": "mcf",
             "631.deepsjeng_s": "deepsjeng",
