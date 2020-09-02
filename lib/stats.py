@@ -65,6 +65,7 @@ cloudsuite_abbr_dict = {
 
 others_abbr_dict = {
             "graph500:bfs:23:13": "graph500",
+            "graph500-bfs-23-16": "graph500",
         }
 
 def abbreviate_workload_name(workload_name):
