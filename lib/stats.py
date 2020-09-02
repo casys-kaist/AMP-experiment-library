@@ -7,6 +7,8 @@
         Author: Taekyung Heo <tkheo@casys.kaist.ac.kr>
 """
 
+import numpy as np
+
 def record_std(std, stdfile):
     filename = stdfile.name
     if "stdout.txt" in filename:
@@ -69,3 +71,7 @@ def abbreviate_workload_name(workload_name):
         if workload_name in abbr_dict.keys():
             return abbr_dict[workload_name]
     return workload_name
+
+def geomean(iterable):
+    a = np.array(iterable)
+    return a.prod()**(1.0/len(a))
