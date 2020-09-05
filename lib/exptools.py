@@ -70,3 +70,9 @@ def get_workload(ssh_client, workload_type, workload_name):
     elif workload_type == "page_migration_policy_preference_synthetic_bench":
         workload = page_migration_policy_preference_synthetic_bench(ssh_client, workload_name)
     return workload
+
+def pause_docker_process(ssh_client, container_id):
+    cmd = "docker_process_pauser.py -container_id %s" % (container_id)
+    print(cmd)
+    stdin, stdout, stderr = ssh_client.exec_command(cmd)
+    stdout.channel.recv_exit_status()
