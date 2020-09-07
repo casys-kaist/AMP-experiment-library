@@ -16,6 +16,7 @@ from lib.workloads.graph500 import *
 from lib.workloads.npb import *
 from lib.workloads.speccpu2017 import *
 from lib.workloads.page_migration_policy_preference_synthetic_bench import *
+from lib.workloads.page_hotness_tracking_overhead_synthetic_bench import *
 
 def get_ssh_client(ip, port, username, password):
     ssh_client = paramiko.SSHClient()
@@ -69,6 +70,8 @@ def get_workload(ssh_client, workload_type, workload_name):
         workload = speccpu2017(ssh_client, workload_name)
     elif workload_type == "page_migration_policy_preference_synthetic_bench":
         workload = page_migration_policy_preference_synthetic_bench(ssh_client, workload_name)
+    elif workload_type == "page_hotness_tracking_overhead_synthetic_bench":
+        workload = page_hotness_tracking_overhead_synthetic_bench(ssh_client, workload_name)
     return workload
 
 def pause_docker_process(ssh_client, container_id):
