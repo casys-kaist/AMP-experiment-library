@@ -1,4 +1,6 @@
 # AMP-experiment-library
+This repository provides python library for experiment scripts.
+
 ```
 $ sudo pip3 install paramiko numpy
 $ sudo python3 setup.py install
